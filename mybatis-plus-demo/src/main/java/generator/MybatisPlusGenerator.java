@@ -1,13 +1,14 @@
 package generator;
 
 import com.baomidou.mybatisplus.generator.FastAutoGenerator;
-import com.baomidou.mybatisplus.generator.config.OutputFile;
 import com.baomidou.mybatisplus.generator.config.rules.DbColumnType;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 
 import java.sql.Types;
-import java.util.Collections;
 
+/**
+ * 代码生成器
+ */
 public class MybatisPlusGenerator {
     public static void main(String[] args) {
         FastAutoGenerator.create(
@@ -18,7 +19,7 @@ public class MybatisPlusGenerator {
                 .globalConfig(builder -> {
                     builder.author("zhengwei") // 设置作者
 //                            .enableSwagger() // 开启 swagger 模式
-                            .outputDir("D:\\java_projects\\spring-boot-demo\\mybatis-plus-demo\\src\\main\\java\\"); // 指定输出目录(项目新建是的java目录绝对路径)
+                            .outputDir("D:\\java_projects\\spring-boot-demo\\mybatis-plus-demo\\src\\main\\java\\"); // 指定输出目录(项目新建时的java目录绝对路径)
                 })
                 .dataSourceConfig(builder ->
                         builder.typeConvertHandler((globalConfig, typeRegistry, metaInfo) -> {
