@@ -10,6 +10,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>mybatis-plus-demo</module>
+        <module>spring-security-demo</module>
     </modules>
 
     <properties>
