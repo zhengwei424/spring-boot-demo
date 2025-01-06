@@ -20,6 +20,7 @@ public class JwtUtil {
 	// 有效期
 	public static final Long JWT_TTL = 60 * 60 * 1000L;  // 1小时
 
+    // 长度要足够长（当前是64个字符），保证generalKey方法生成的字节长度达标，否则方法会报错
 	public static final String SECRET_KEY = "a1B2c3D4e5F6g7H8i9J0k1L2m3N4o5P6q7R8s9T0u1V2w3X4y5Z6";
 
 	public static String getUUID() {
@@ -91,19 +92,17 @@ public class JwtUtil {
 		return Jwts.parser().verifyWith(secretKey).build().parseSignedClaims(jwt).getPayload();
 	}
 
-	public static void main(String[] args) {
-		String jwt = createJWT("zhengwei");
-		System.out.println(jwt);
-
-		try {
-			Claims a = parseJWT(jwt);
-			System.out.println(a.getSubject());
-			System.out.println(a.getIssuer());
-			System.out.println(a.getIssuedAt());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-
-	}
+//	public static void main(String[] args) {
+//		String jwt = createJWT("zhengwei");
+//		System.out.println(jwt);
+//
+//		try {
+//			Claims a = parseJWT(jwt);
+//			System.out.println(a.getSubject());
+//			System.out.println(a.getIssuer());
+//			System.out.println(a.getIssuedAt());
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
 }

@@ -1,4 +1,6 @@
 import com.zhengwei.security.SecurityDemo;
+import com.zhengwei.security.component.RedisCache;
+import com.zhengwei.security.domain.LoginUser;
 import com.zhengwei.security.domain.SysUser;
 import com.zhengwei.security.mapper.SysUserMapper;
 import org.junit.jupiter.api.Test;
@@ -13,6 +15,9 @@ public class MapperTest {
 
     @Autowired
     private SysUserMapper sysUserMapper;
+
+    @Autowired
+    private RedisCache redisCache;
 
     @Test
     public void test1() {
@@ -29,5 +34,11 @@ public class MapperTest {
     public void test() {
         List<SysUser> sysUsers = sysUserMapper.selectList(null);
         System.out.println(sysUsers);
+    }
+
+    @Test
+    public void testRedis() {
+        LoginUser loginUser = redisCache.getCacheObject("login:2");
+        System.out.println(loginUser);
     }
 }

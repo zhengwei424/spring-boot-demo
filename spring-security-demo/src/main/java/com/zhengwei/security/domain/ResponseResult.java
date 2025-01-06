@@ -24,4 +24,10 @@ public class ResponseResult<T> {
         this.code = code;
         this.data = data;
     }
+
+    public ResponseResult(Integer code, String msg, T data) {
+        this.code = code;
+        this.msg = msg;
+        this.data = data;
+    }
 }
