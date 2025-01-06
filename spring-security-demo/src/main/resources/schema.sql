@@ -1,7 +1,7 @@
 create table sys_user (
     id BIGINT(20) not null auto_increment comment '主键',
-    user_name varchar(64) not null default 'NULL' comment '用户名',
-    nick_name varchar(64) not null default 'NULL' comment '昵称',
+    username varchar(64) not null default 'NULL' comment '用户名',
+    nickname varchar(64) not null default 'NULL' comment '昵称',
     password varchar(64) not null default 'NULL' comment '密码',
     status char(1) default '0' comment '账号状态（0正常 1停用）',
     email varchar(64) default NULL comment '邮箱',
@@ -15,4 +15,9 @@ create table sys_user (
     update_time DATETIME default null comment '更新时间',
     del_flag int(11) default 0 comment '删除标志（0 未删除 1 已删除）',
     primary key (id)
-) engine=INNODB AUTO_INCREMENT = 2  DEFAULT CHARSET=utf8mb4 comment "用户表"
+) engine=INNODB AUTO_INCREMENT = 2  DEFAULT CHARSET=utf8mb4 comment "用户表";
+
+insert into sys_user(username, password) value (
+                                                'zhengwei',
+                                               '$2a$10$mDQc5cQCxwzEQxiwiaSNteoDxNzLKSSual8utvvLIn2GJhBmrcZ4a'
+                                               );
