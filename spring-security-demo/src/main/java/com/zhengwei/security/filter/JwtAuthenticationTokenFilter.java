@@ -53,6 +53,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         if (loginUser == null) {
             throw new RuntimeException("用户未登录");
         }
+
         // 存入SecurityContextHolder
         // TODO 获取权限列表
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(loginUser, null, null);

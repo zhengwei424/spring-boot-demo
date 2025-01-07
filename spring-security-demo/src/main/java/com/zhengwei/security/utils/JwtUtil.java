@@ -92,17 +92,4 @@ public class JwtUtil {
 		return Jwts.parser().verifyWith(secretKey).build().parseSignedClaims(jwt).getPayload();
 	}
 
-//	public static void main(String[] args) {
-//		String jwt = createJWT("zhengwei");
-//		System.out.println(jwt);
-//
-//		try {
-//			Claims a = parseJWT(jwt);
-//			System.out.println(a.getSubject());
-//			System.out.println(a.getIssuer());
-//			System.out.println(a.getIssuedAt());
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//	}
 }

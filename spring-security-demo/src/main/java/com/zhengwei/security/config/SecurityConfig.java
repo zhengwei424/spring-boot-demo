@@ -34,10 +34,10 @@ public class SecurityConfig {
 				.csrf().disable() // 关闭csrf
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) // 不通过session获取securitycontext
 				.and().authorizeRequests()
-                .antMatchers("/user/login").anonymous()// 登录接口允许匿名访问
+                .antMatchers("/user/login").anonymous()// 登录接口允许匿名访问->anonymous()匿名访问指未认证登录的用户可以访问这个url，已经登录过的用户不允许访问该url
                 .anyRequest().authenticated(); //其他请求需要认证
 
-        // 设置jwt过滤器的位置
+        // 设置jwt过滤器的位置(该配置是将jwtAuthenticationTokenFilter放在UsernamePasswordAuthenticationFilter之前
         http.addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
 		return http.build();
 	}
