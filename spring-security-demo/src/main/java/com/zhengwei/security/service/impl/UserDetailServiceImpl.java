@@ -3,6 +3,7 @@ package com.zhengwei.security.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.zhengwei.security.domain.LoginUser;
 import com.zhengwei.security.domain.SysUser;
+import com.zhengwei.security.mapper.SysMenuMapper;
 import com.zhengwei.security.mapper.SysUserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,9 +11,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.security.Permission;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -20,6 +18,9 @@ public class UserDetailServiceImpl implements UserDetailsService {
 
 	@Autowired
 	private SysUserMapper sysUserMapper;
+
+	@Autowired
+	private SysMenuMapper sysMenuMapper;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -30,11 +31,9 @@ public class UserDetailServiceImpl implements UserDetailsService {
 		if (sysUser == null) {
 			throw new UsernameNotFoundException("用户名不存在");
 		}
-		// TODO: 查询对应权限信息
-
 
 		// 将sysUser封装成userDetails->LoginUser实现了UserDetails接口
-        List<String> permissions = Arrays.asList("test", "admin");
+        List<String> permissions = sysMenuMapper.selectPermsByUserId(sysUser.getId());
 		return new LoginUser(sysUser, permissions);
 	}
 }

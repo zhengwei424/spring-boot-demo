@@ -1,7 +1,7 @@
 import com.zhengwei.security.SecurityDemo;
 import com.zhengwei.security.component.RedisCache;
 import com.zhengwei.security.domain.LoginUser;
-import com.zhengwei.security.domain.SysUser;
+import com.zhengwei.security.mapper.SysMenuMapper;
 import com.zhengwei.security.mapper.SysUserMapper;
 import io.jsonwebtoken.Claims;
 import org.json.JSONException;
@@ -21,6 +21,9 @@ public class MapperTest {
     @Autowired
     private SysUserMapper sysUserMapper;
 
+	@Autowired
+	private SysMenuMapper sysMenuMapper;
+
     @Autowired
     private RedisCache redisCache;
 
@@ -31,14 +34,14 @@ public class MapperTest {
         // $2a$10$mDQc5cQCxwzEQxiwiaSNteoDxNzLKSSual8utvvLIn2GJhBmrcZ4a
         boolean a = bCryptPasswordEncoder.matches("123", "$2a$10$mDQc5cQCxwzEQxiwiaSNteoDxNzLKSSual8utvvLIn2GJhBmrcZ4a");
         System.out.println(a);
-
-
     }
 
     @Test
     public void test() {
-        List<SysUser> sysUsers = sysUserMapper.selectList(null);
-        System.out.println(sysUsers);
+	// List<SysUser> sysUsers = sysUserMapper.selectList(null);
+	// System.out.println(sysUsers);
+		List<String> perms = sysMenuMapper.selectPermsByUserId(1L);
+	    System.out.println(perms);
     }
 
     @Test
