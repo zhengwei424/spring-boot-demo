@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * 继承OncePerRequestFilter类而不是实现Filter接口，保证该Filter对每个请求指执行一次
+ * 继承OncePerRequestFilter类，而不是实现Filter接口，保证该Filter对每个请求只执行一次
  *
  */
 @Component

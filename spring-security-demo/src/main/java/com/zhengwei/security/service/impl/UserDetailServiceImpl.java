@@ -32,8 +32,10 @@ public class UserDetailServiceImpl implements UserDetailsService {
 			throw new UsernameNotFoundException("用户名不存在");
 		}
 
-		// 将sysUser封装成userDetails->LoginUser实现了UserDetails接口
-        List<String> permissions = sysMenuMapper.selectPermsByUserId(sysUser.getId());
+		// 根据用户id查询用户权限列表
+		List<String> permissions = sysMenuMapper.selectPermsByUserId(sysUser.getId());
+
+		// LoginUser实现了UserDetails接口
 		return new LoginUser(sysUser, permissions);
 	}
 }
